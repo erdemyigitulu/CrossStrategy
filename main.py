@@ -9,16 +9,13 @@ def getCandles (symbol,interval,limit):
     params = {
         "symbol" : symbol,
         "interval" : interval,
-        "limit" : limit
+        "limit" : limit,
     }
     url = urljoin(baseUrl,"fapi/v1/klines")
     response = requests.get(url, params).json()
+    print(response)
     return response
 
-# def getLivePrice(symbol)
-#     url = urljoin(baseUrl,"fapi/v1/klines")
-#     response = requests.get(url, params).json()
-#     return response
 
 def getCloseTimes (symbol,intervalmin):
     candleCount = int((60 / intervalmin) * 24 * 3)
@@ -63,7 +60,7 @@ def isCrossEmaValues ():
         if ema5Last < ema8Last and ema13Last:
             print("SHORTLA ")
     elif ema5SecondLast < ema8SecondLast or ema5SecondLast < ema13SecondLast :
-        if ema5Last > ema8Last and ema13Last :
+        if ema5Last > ema8Last and ema13Last:
             print("LONGLA")
 
 isCrossEmaValues()
